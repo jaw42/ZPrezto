@@ -12,3 +12,4 @@ fi
 
 # Customize to your needs...
 
+export PATH=~/dotfiles/bin:$PATH

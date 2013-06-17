@@ -47,15 +47,15 @@ alias sftp='noglob sftp'
 # Define general aliases.
 alias _='sudo'
 alias b='${(z)BROWSER}'
-alias cp="${aliases[cp]:-cp} -i"
+alias cp="${aliases[cp]:-cp} -v"
 alias e='${(z)VISUAL:-${(z)EDITOR}}'
 alias ln="${aliases[ln]:-ln} -i"
 alias mkdir="${aliases[mkdir]:-mkdir} -p"
-alias mv="${aliases[mv]:-mv} -i"
+alias mv="${aliases[mv]:-mv} -v"
 alias p='${(z)PAGER}'
 alias po='popd'
 alias pu='pushd'
-alias rm="${aliases[rm]:-rm} -i"
+alias rm="${aliases[rm]:-rm} -v"
 alias type='type -a'
 
 # ls
@@ -139,6 +139,38 @@ fi
 # Serves a directory via HTTP.
 alias http-serve='python -m SimpleHTTPServer'
 
+alias reload!='. ~/.zshrc'
+
+alias ls='ls --color=auto'
+alias mv='mv -i -v'
+alias rm='rm -v'
+alias less='less -F'
+alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
+
+# Quick move -----------------------------
+alias y3p='cd ~/Documents/Physics/Year\ 3'
+
+# Rebuild dwm, install and restart -------
+alias redwm='cd ~/.scripts/dwm; makepkg -g >> PKGBUILD; makepkg -fi --noconfirm; killall dwm'
+
+alias g++='g++ -Wall -o'
+
+# Pointess command to look wierd and cool
+alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
+
+# Print a calendar for the next week using the width of the terminal as max
+alias calw='rem -w$COLUMNS,0,1 -m -c+1'
+
+alias mail='mailx -A gmail'
+alias mailv='mailx -vA gmail'
+
+# Media -------------------------------
+alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
+alias mute-beep='xset -b && sudo rmmod pcspkr'
+alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
+
+alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'  
+
 #
 # Functions
 #
@@ -176,5 +208,26 @@ function find-exec {
 # Displays user owned processes status.
 function psu {
   ps -U "${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
+}
+
+# Vim
+vim(){
+    if [[ $# -eq 0 ]]; then
+        /usr/bin/vim 
+    else
+        /usr/bin/vim --remote-tab-silent "$@"
+    fi
+}
+gvim(){
+    if [[ $# -eq 0 ]]; then
+        /usr/bin/gvim 
+    else
+        /usr/bin/gvim --remote-tab-silent "$@"
+    fi
+}
+
+# Pacman
+paclist() {
+  sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
 
