@@ -149,6 +149,7 @@ alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 
 # Quick move -----------------------------
 alias y3p='cd ~/Documents/Physics/Year\ 3'
+alias dot='cd ~/dotfiles'
 
 # Rebuild dwm, install and restart -------
 alias redwm='cd ~/.scripts/dwm; makepkg -g >> PKGBUILD; makepkg -fi --noconfirm; killall dwm'
@@ -158,9 +159,6 @@ alias g++='g++ -Wall -o'
 # Pointess command to look wierd and cool
 alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
 
-# Print a calendar for the next week using the width of the terminal as max
-alias calw='rem -w$COLUMNS,0,1 -m -c+1'
-
 alias mail='mailx -A gmail'
 alias mailv='mailx -vA gmail'
 
@@ -168,6 +166,7 @@ alias mailv='mailx -vA gmail'
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
+alias yt='youtube-viewer -S joshwainwright1'
 
 alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'  
 
