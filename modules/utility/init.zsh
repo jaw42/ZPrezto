@@ -166,9 +166,16 @@ alias mailv='mailx -vA gmail'
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
-alias yt='youtube-viewer -S joshwainwright1'
+#alias yt='youtube-viewer -S joshwainwright1'
+function yt {
+	if [ $# -eq 0 ]; then
+		youtube-viewer -S joshwainwright1
+	else
+		youtube-viewer "$@"
+	fi
+}
 
-alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'  
+alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 
 #
 # Functions
@@ -209,24 +216,7 @@ function psu {
   ps -U "${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
 }
 
-# Vim
-vim(){
-    if [[ $# -eq 0 ]]; then
-        /usr/bin/vim 
-    else
-        /usr/bin/vim --remote-tab-silent "$@"
-    fi
-}
-gvim(){
-    if [[ $# -eq 0 ]]; then
-        /usr/bin/gvim 
-    else
-        /usr/bin/gvim --remote-tab-silent "$@"
-    fi
-}
-
 # Pacman
 paclist() {
   sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
-

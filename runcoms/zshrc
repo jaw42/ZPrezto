@@ -4,6 +4,7 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+fortune
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -12,4 +13,6 @@ fi
 
 # Customize to your needs...
 
-export PATH=~/dotfiles/bin:$PATH
+#export PATH=~/dotfiles/bin:$PATH
+
+#[ -n "$FBTERM" ] && export TERM=fbterm
