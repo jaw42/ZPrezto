@@ -14,5 +14,3 @@ fi
 # Customize to your needs...
 
 #export PATH=~/dotfiles/bin:$PATH
-
-#[ -n "$FBTERM" ] && export TERM=fbterm
