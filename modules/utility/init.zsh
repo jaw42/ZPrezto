@@ -57,6 +57,7 @@ alias po='popd'
 alias pu='pushd'
 alias rm="${aliases[rm]:-rm} -v"
 alias type='type -a'
+alias t='todo.sh -d /path/to/your/todo.cfg'
 
 # ls
 if is-callable 'dircolors'; then
@@ -219,4 +220,13 @@ function psu {
 # Pacman
 paclist() {
   sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
+}
+
+# Create a new script, make executable and add shebang
+shebang() {
+	if i=$(which $1); then
+		printf '#!%s\n\n' $i >  $2 && vim + $2 && chmod 755 $2;
+	else
+		echo "'which' could not find $1, is it in your \$PATH?";
+	fi;
 }
