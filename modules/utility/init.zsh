@@ -57,7 +57,6 @@ alias po='popd'
 alias pu='pushd'
 alias rm="${aliases[rm]:-rm} -v"
 alias type='type -a'
-alias t='todo.sh -d /path/to/your/todo.cfg'
 
 # ls
 if is-callable 'dircolors'; then
@@ -102,25 +101,6 @@ alias lc='lt -c'         # Lists sorted by date, most recent last, shows change 
 alias lu='lt -u'         # Lists sorted by date, most recent last, shows access time.
 alias sl='ls'            # I often screw this up.
 
-# Mac OS X Everywhere
-if [[ "$OSTYPE" == darwin* ]]; then
-  alias o='open'
-  alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
-else
-  alias o='xdg-open'
-  alias get='wget --continue --progress=bar --timestamping'
-
-  if (( $+commands[xclip] )); then
-    alias pbcopy='xclip -selection clipboard -in'
-    alias pbpaste='xclip -selection clipboard -out'
-  fi
-
-  if (( $+commands[xsel] )); then
-    alias pbcopy='xsel --clipboard --input'
-    alias pbpaste='xsel --clipboard --output'
-  fi
-fi
-
 alias pbc='pbcopy'
 alias pbp='pbpaste'
 
@@ -142,7 +122,7 @@ alias http-serve='python -m SimpleHTTPServer'
 
 alias reload!='. ~/.zshrc'
 
-alias ls='ls --color=auto'
+#alias ls='ls --color=auto'
 alias mv='mv -i -v'
 alias rm='rm -v'
 alias less='less -F'
@@ -162,19 +142,22 @@ alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hex
 
 alias mail='mailx -A gmail'
 alias mailv='mailx -vA gmail'
+alias time-update='sudo ntpdate pool.ntp.org'
+#alias t='clear; todo.sh -d ~/.todo.cfg'
+function t {
+	if [ $# -eq 0 ]; then
+		clear
+		todo.sh -t -d ~/.todo.cfg
+	else
+		todo.sh -t -d ~/.todo.cfg $@
+	fi
+}
+compdef t=todo.sh
 
 # Media -------------------------------
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
-#alias yt='youtube-viewer -S joshwainwright1'
-function yt {
-	if [ $# -eq 0 ]; then
-		youtube-viewer -S joshwainwright1
-	else
-		youtube-viewer "$@"
-	fi
-}
 
 alias vless='vim -u /usr/share/vim/vim73/macros/less.vim'
 

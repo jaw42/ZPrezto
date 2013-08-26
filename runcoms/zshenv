@@ -45,6 +45,7 @@ path=(
   /sbin
   /usr/local/{bin,sbin}
   ~/Bin
+  /home/josh/.gem/ruby/2.0.0/bin
 )
 
 #
@@ -74,4 +75,3 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
-

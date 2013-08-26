@@ -13,10 +13,3 @@
 		zcompile "$zcompdump"
 	fi
 } &!
-
-#if [[ $(tty | grep -o '/dev/tty') = /dev/tty ]]; then
-#	FBTERM=1 fbterm
-#	exit
-#else
-#	FBTERM=0
-#fi
