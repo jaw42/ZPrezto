@@ -104,6 +104,13 @@ alias sl='ls'            # I often screw this up.
 alias pbc='pbcopy'
 alias pbp='pbpaste'
 
+# File Download
+if (( $+commands[curl] )); then
+  alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
+elif (( $+commands[wget] )); then
+  alias get='wget --continue --progress=bar --timestamping'
+fi
+
 # Resource Usage
 alias df='df -kh'
 alias du='du -kh'
