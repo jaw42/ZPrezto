@@ -101,6 +101,10 @@ alias lc='lt -c'         # Lists sorted by date, most recent last, shows change 
 alias lu='lt -u'         # Lists sorted by date, most recent last, shows access time.
 alias sl='ls'            # I often screw this up.
 
+function chpwd() {
+	ll
+}
+
 alias pbc='pbcopy'
 alias pbp='pbpaste'
 
